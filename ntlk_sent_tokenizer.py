@@ -79,7 +79,7 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                             #sentences = list(doc.sents)
                             sentences = sent_tokenize(doc)
                             for j in range(len(sentences)):
-                                if j<=4 and i <= 12:
+                                if i <= 12:
                                     print(sentences[j])
                                 clean_sent = clean_sentence(sentences[j])
                                 new_file.write(clean_sent + '\n')
