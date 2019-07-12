@@ -12,18 +12,24 @@ from os import listdir, remove
 from os.path import isfile, join
 import sys
 import unicodedata
-
 import string
 import collections
-
 import spacy
+
+import os,sys,inspect
+current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parent_dir = os.path.dirname(current_dir)
+sys.path.insert(0, parent_dir) 
+from clean_text import clean_sentence
+
+
 
 dir = "/lm_corpus/dewiki_extracted/"
 out_dir = "/lm_corpus/dewiki_spacy_segmented/"
 
 def tokenize_into_sents(rootdir=dir, output_root=out_dir):
 
-    nlp = spacy.load('de_core_news_sm')
+    nlp = spacy.load('de')
     paths = listdir(rootdir)
 
     exists = os.path.isdir(output_root)
@@ -71,7 +77,8 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                             doc = nlp(doc)
                             sentences = list(doc.sents)
                             for i in range(len(sentences)):
-                                new_file.write(sentences[i].string.strip() + '\n')
+                                clean_sent = clean_sentence(sentences[i].string.strip())
+                                new_file.write(clean_sent + '\n')
                             new_file.write('\n')
                             doc = ""
                         else:
