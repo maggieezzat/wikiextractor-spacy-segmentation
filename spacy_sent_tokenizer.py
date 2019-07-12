@@ -59,7 +59,7 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
         for file in files:
 
             file_path = join(rootdir, path, file) 
-            new_file_name = join(output_dir, file + ".txt")
+            new_file_name = join(output_dir, file + "_spacy.txt")
 
             processed_files+=1
             print("Processing path " + path + " " +  str(current_path) +  "/" + str(total_paths)
@@ -77,8 +77,9 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                             doc = nlp(doc)
                             sentences = list(doc.sents)
                             for j in range(len(sentences)):
-                                clean_sent = clean_sentence(sentences[j].string.strip())
-                                new_file.write(clean_sent + '\n')
+                                #clean_sent = clean_sentence(sentences[j].string.strip())
+                                #new_file.write(clean_sent + '\n')
+                                new_file.write(sentences[j].string.strip() + '\n')
                             new_file.write('\n')
                             doc = ""
                         else:
