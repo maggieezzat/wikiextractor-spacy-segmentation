@@ -79,9 +79,11 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                             #sentences = list(doc.sents)
                             sentences = sent_tokenize(doc)
                             for j in range(len(sentences)):
-                                #clean_sent = clean_sentence(sentences[j])
-                                #new_file.write(clean_sent + '\n')
-                                new_file.write(sentences[j] + '\n')
+                                if j<=4:
+                                    print(sentences[j])
+                                clean_sent = clean_sentence(sentences[j])
+                                new_file.write(clean_sent + '\n')
+                                #new_file.write(sentences[j] + '\n')
                             new_file.write('\n')
                             doc = ""
                         else:
