@@ -12,17 +12,16 @@ from os import listdir, remove
 from os.path import isfile, join
 import sys
 import unicodedata
-from absl import app as absl_app
 
 import string
 import collections
 
 import spacy
 
-dir = "/home/maggie/de-wiki"
-out_dir = "/home/maggie/segmented_text"
+dir = "/lm_corpus/dewiki_extracted/"
+out_dir = "/lm_corpus/dewiki_spacy_segmented/"
 
-def text_cleaning(rootdir=dir, output_root=out_dir):
+def tokenize_into_sents(rootdir=dir, output_root=out_dir):
 
     nlp = spacy.load('de_core_news_sm')
     paths = listdir(rootdir)
@@ -77,11 +76,13 @@ def text_cleaning(rootdir=dir, output_root=out_dir):
                             doc = ""
                         else:
                             doc = doc + content[i]
+
+                exit()
                             
 
-def main(_):
-    text_cleaning()
+def main():
+    tokenize_into_sents()
 
 
 if __name__ == "__main__":
-    absl_app.run(main)
+    main()
