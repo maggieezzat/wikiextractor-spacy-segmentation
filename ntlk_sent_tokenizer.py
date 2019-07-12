@@ -63,8 +63,8 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
             new_file_name = join(output_dir, file + "_ntlk.txt")
 
             processed_files+=1
-            print("Processing path " + path + " " +  str(current_path) +  "/" + str(total_paths)
-            + " Files: " + str(processed_files) + "/" + str(total_files), end="\r")
+            #print("Processing path " + path + " " +  str(current_path) +  "/" + str(total_paths)
+            #+ " Files: " + str(processed_files) + "/" + str(total_files), end="\r")
 
             with open(file_path, 'r+', encoding='utf-8') as f:
                 with open(new_file_name, 'w', encoding='utf-8') as new_file:
