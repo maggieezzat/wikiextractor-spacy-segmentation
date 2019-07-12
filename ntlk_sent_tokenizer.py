@@ -1,20 +1,5 @@
-# coding=utf-8
-
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
-import codecs
-import fnmatch
-import os
-from os import listdir, remove
-from os.path import isfile, join
-import sys
-import unicodedata
-import string
-import collections
-import spacy
+import nltk
+from nltk.tokenize import sent_tokenize
 
 import os,sys,inspect
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
@@ -29,7 +14,6 @@ out_dir = "/lm_corpus/dewiki_spacy_segmented/"
 
 def tokenize_into_sents(rootdir=dir, output_root=out_dir):
 
-    nlp = spacy.load('de')
     paths = listdir(rootdir)
 
     exists = os.path.isdir(output_root)
@@ -74,8 +58,9 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                             i+=1
                             continue
                         if "</doc>" in content[i]:
-                            doc = nlp(doc)
-                            sentences = list(doc.sents)
+                            #doc = nlp(doc)
+                            #sentences = list(doc.sents)
+                            sentences = sent_tokenize(doc)
                             for j in range(len(sentences)):
                                 clean_sent = clean_sentence(sentences[j].string.strip())
                                 new_file.write(clean_sent + '\n')
