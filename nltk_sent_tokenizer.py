@@ -86,11 +86,12 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                             continue
                         if not line.strip():
                             continue
-                            
+
                         if "</doc>" in line:
                             sentences = sent_tokenize(doc)
                             for j in range(len(sentences)):
                                 clean_sent = clean_sentence(sentences[j])
+                                clean_sent = ' '.join(clean_sent.split())
                                 new_file.write(clean_sent + '\n')
                             new_file.write('\n')
                             doc = ""
