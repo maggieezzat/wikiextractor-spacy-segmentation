@@ -67,14 +67,10 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
 
             with open(file_path, 'r+', encoding='utf-8') as f:
                 with open(new_file_name, 'w', encoding='utf-8') as new_file:
+                    content = f.readlines()
                     doc = ""
                     skip_header = False
-                    
-                    while(True):
-                        line = f.readline()
-                        if not line:
-                            #doc = ""
-                            break
+                    for i in range(len(content)):
                         
                         if skip_header:
                             skip_header = False
@@ -83,23 +79,25 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                         if "<doc id=" in line: 
                             skip_header = True
                             continue
-                        if not line.strip():
+
+                        if not content[i].strip():
                             continue
 
-                        if "</doc>" in line:
+                        if "</doc>" in content[i]:
                             
                             doc = nlp(doc)
                             sentences = list(doc.sents)
                             for j in range(len(sentences)):
                                 clean_sent = clean_sentence(sentences[j].string.strip())
+                                #clean_sent = sentences[j].string.strip()
                                 clean_sent = ' '.join(clean_sent.split())
                                 new_file.write(clean_sent + '\n')
-                                #new_file.write(sentences[j].string.strip() + '\n')
+                                new_file.write( + '\n')
                             new_file.write('\n')
 
                         else:
-                            doc = doc + line
-
+                            doc = doc + content[i]
+                            
                 exit()
                             
 
