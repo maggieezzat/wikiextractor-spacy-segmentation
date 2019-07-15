@@ -92,6 +92,7 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                             sentences = list(document.sents)
                             for j in range(len(sentences)):
                                 clean_sent = clean_sentence(sentences[j].string.strip())
+                                clean_sent = ' '.join(clean_sent.split())
                                 new_file.write(clean_sent + '\n')
                                 #new_file.write(sentences[j].string.strip() + '\n')
                             new_file.write('\n')
