@@ -69,20 +69,24 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
             with open(file_path, 'r+', encoding='utf-8') as f:
                 with open(new_file_name, 'w', encoding='utf-8') as new_file:
                     doc = ""
-                    skip_header1 = False
+                    skip_header = False
+                    
                     while(True):
                         line = f.readline()
                         if not line:
                             doc = ""
                             break
-                        if skip_header1:
-                            skip_header1 = False
+                        
+                        if skip_header:
+                            skip_header = False
                             continue
                         
-                        if "<doc id=" in line or not line.strip():
-                            skip_header1 = True
-                            #skip_header2 = True
+                        if "<doc id=" in line: 
+                            skip_header = True
                             continue
+                        if not line.strip():
+                            continue
+                            
                         if "</doc>" in line:
                             sentences = sent_tokenize(doc)
                             for j in range(len(sentences)):
