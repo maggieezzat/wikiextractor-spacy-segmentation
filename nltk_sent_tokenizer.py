@@ -69,8 +69,7 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
             with open(file_path, 'r+', encoding='utf-8') as f:
                 with open(new_file_name, 'w', encoding='utf-8') as new_file:
                     doc = ""
-                    skip_header1 = True
-                    skip_header2 = True
+                    skip_header1 = False
                     while(True):
                         line = f.readline()
                         if not line:
