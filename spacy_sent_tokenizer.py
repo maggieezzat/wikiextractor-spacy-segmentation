@@ -67,23 +67,37 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
 
             with open(file_path, 'r+', encoding='utf-8') as f:
                 with open(new_file_name, 'w', encoding='utf-8') as new_file:
-                    content = f.readlines()
                     doc = ""
-                    for i in range(len(content)):
-                        if "<doc id=" in content[i] or not content[i].strip():
-                            i+=1
+                    skip_header = False
+                    
+                    while(True):
+                        line = f.readline()
+                        if not line:
+                            doc = ""
+                            break
+                        
+                        if skip_header:
+                            skip_header = False
                             continue
-                        if "</doc>" in content[i]:
+                        
+                        if "<doc id=" in line: 
+                            skip_header = True
+                            continue
+                        if not line.strip():
+                            continue
+
+                        if "</doc>" in line:
+                            
                             doc = nlp(doc)
                             sentences = list(doc.sents)
                             for j in range(len(sentences)):
-                                #clean_sent = clean_sentence(sentences[j].string.strip())
-                                #new_file.write(clean_sent + '\n')
-                                new_file.write(sentences[j].string.strip() + '\n')
+                                clean_sent = clean_sentence(sentences[j].string.strip())
+                                new_file.write(clean_sent + '\n')
+                                #new_file.write(sentences[j].string.strip() + '\n')
                             new_file.write('\n')
-                            doc = ""
+
                         else:
-                            doc = doc + content[i]
+                            doc = doc + line
 
                 exit()
                             
