@@ -76,7 +76,7 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                             skip_header = False
                             continue
                         
-                        if "<doc id=" in line: 
+                        if "<doc id=" in content[i]: 
                             skip_header = True
                             continue
 
@@ -97,7 +97,7 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
 
                         else:
                             doc = doc + content[i]
-                            
+
                 exit()
                             
 
