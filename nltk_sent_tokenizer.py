@@ -60,7 +60,7 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
         for file in files:
 
             file_path = join(rootdir, path, file) 
-            new_file_name = join(output_dir, file + "_ntlk.txt")
+            new_file_name = join(output_dir, file + ".txt")
 
             processed_files+=1
             print("Processing path " + path + " " +  str(current_path) +  "/" + str(total_paths)
@@ -97,7 +97,6 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                         else:
                             doc = doc + line
 
-                exit()
                             
 
 def main():
