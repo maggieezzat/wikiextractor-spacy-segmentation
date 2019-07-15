@@ -92,7 +92,6 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                                 #clean_sent = sentences[j].string.strip()
                                 clean_sent = ' '.join(clean_sent.split())
                                 new_file.write(clean_sent + '\n')
-                                new_file.write( + '\n')
                             new_file.write('\n')
 
                         else:
