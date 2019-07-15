@@ -88,8 +88,8 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
 
                         if "</doc>" in line:
                             
-                            doc = nlp(doc)
-                            sentences = list(doc.sents)
+                            document = nlp(doc)
+                            sentences = list(document.sents)
                             for j in range(len(sentences)):
                                 clean_sent = clean_sentence(sentences[j].string.strip())
                                 new_file.write(clean_sent + '\n')
