@@ -73,7 +73,7 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                     while(True):
                         line = f.readline()
                         if not line:
-                            doc = ""
+                            #doc = ""
                             break
                         
                         if skip_header:
@@ -88,8 +88,8 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
 
                         if "</doc>" in line:
                             
-                            document = nlp(doc)
-                            sentences = list(document.sents)
+                            doc = nlp(doc)
+                            sentences = list(doc.sents)
                             for j in range(len(sentences)):
                                 clean_sent = clean_sentence(sentences[j].string.strip())
                                 clean_sent = ' '.join(clean_sent.split())
