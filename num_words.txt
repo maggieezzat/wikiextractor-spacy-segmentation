@@ -1,1 +1,1 @@
-Number of Words in German Wikipedia Corpus: 719871917
+Number of Words in German Wikipedia Corpus: 762378384
