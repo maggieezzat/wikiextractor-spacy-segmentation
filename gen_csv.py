@@ -11,9 +11,8 @@ import sys
 import string
 
 dir = "/bert/bert_dewiki_cleaned/"
-out = "/bert/dewiki_csv_files/"
 
-def gen_csv_file(rootdir=dir, output=out):
+def gen_dewiki_csvs(rootdir = dir, output="/bert/dewiki_csv_files/"):
 
     directory = os.path.dirname(output)
     if not os.path.exists(directory):
@@ -40,8 +39,32 @@ def gen_csv_file(rootdir=dir, output=out):
                 f.write(item + '\n')
 
 
+
+
+def gen_tfrecords_csv(rootdir = dir, output="/bert/bert-german/vocab/dewiki_lower_128.csv"):
+
+    files = [
+        f
+        for f in listdir(rootdir)
+        #if isfile(join(rootdir, f))
+    ]
+
+    csv = []
+    for file in files:
+        #file_path = join(rootdir, file)
+        file_path = "/bert/tfrecords/"+file+".tfrecord"
+        csv.append(file_path)
+
+    with open(output, 'w') as f:
+        for item in csv:
+            f.write(item + '\n')
+
+
+
+
 def main():
-    gen_csv_file()
+    #gen_csv_file()
+    #gen_tfrecords_csv()
 
 
 if __name__ == "__main__":
