@@ -27,7 +27,7 @@ from clean_text import clean_sentence
 
 
 dir = "/lm_corpus/dewiki_extracted/"
-out_dir = "/bert/dewiki_cleaned_bert/"
+out_dir = "/bert/bert_dewiki_cleaned/"
 
 def tokenize_into_sents(rootdir=dir, output_root=out_dir):
 
@@ -90,9 +90,8 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                         if "</doc>" in line:
                             sentences = sent_tokenize(doc)
                             for j in range(len(sentences)):
-                                #clean_sent = clean_sentence(sentences[j])
-                                #clean_sent = ' '.join(clean_sent.split())
-                                clean_sent = ' '.join(sentences[j].split())
+                                clean_sent = clean_sentence(sentences[j])
+                                clean_sent = ' '.join(clean_sent.split())
                                 new_file.write(clean_sent + '\n')
                             doc = ""
                             new_file.write('\n')
