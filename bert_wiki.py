@@ -98,7 +98,6 @@ def tokenize_into_sents(rootdir=dir, output_root=out_dir):
                         else:
                             doc = doc + line
 
-                    exit()
 
                             
 
