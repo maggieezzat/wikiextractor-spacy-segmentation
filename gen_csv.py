@@ -8,23 +8,18 @@ import os
 from os import listdir, remove
 from os.path import isfile, join
 import sys
-from absl import app as absl_app
 import string
-import tensorflow as tf
 
-dir = "/home/maggie/spacy_processed_text"
-#dir = "/media/maggie/New Volume/spacy_processed_text"
-
-#out = "/media/maggie/New Volume/csv_files"
-out = "/home/maggie/csv_files"
+dir = "/bert/bert_dewiki_cleaned/"
+out = "/bert/dewiki_csv_files/"
 
 def gen_csv_file(rootdir=dir, output=out):
 
-    if not tf.gfile.Exists(output):
-        tf.gfile.MakeDirs(output)
+    directory = os.path.dirname(rootdir)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
     paths = listdir(rootdir)
-    
 
     for path in paths:
 
@@ -45,9 +40,9 @@ def gen_csv_file(rootdir=dir, output=out):
                 f.write(item + '\n')
 
 
-def main(_):
+def main():
     gen_csv_file()
 
 
 if __name__ == "__main__":
-    absl_app.run(main)
+    main()
