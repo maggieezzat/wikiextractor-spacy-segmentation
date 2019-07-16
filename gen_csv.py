@@ -15,7 +15,7 @@ out = "/bert/dewiki_csv_files/"
 
 def gen_csv_file(rootdir=dir, output=out):
 
-    directory = os.path.dirname(rootdir)
+    directory = os.path.dirname(output)
     if not os.path.exists(directory):
         os.makedirs(directory)
 
