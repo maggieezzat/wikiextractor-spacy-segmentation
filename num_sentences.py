@@ -8,13 +8,10 @@ import os
 from os import listdir, remove
 from os.path import isfile, join
 import sys
-from absl import app as absl_app
 import string
-import tensorflow as tf
 
-dir = "/media/maggie/Data/spacy_processed_text"
-#out = "/home/maggie/num_sentences.txt"
-out = "/home/maggie/num_words.txt"
+dir = "/lm_corpus/dewiki_nltk_segmented/"
+out = "/lm_corpus/wikiextractor-spacy-segmentation/num_words.txt"
 
 def count_sentences(rootdir=dir, output=out):
 
@@ -93,9 +90,10 @@ def count_words(rootdir=dir, output=out):
         f.write("Number of Words in German Wikipedia Corpus: "+ str(words_count) + '\n')
 
 
-def main(_):
+def main():
+    count_sentences()
     count_words()
 
 
 if __name__ == "__main__":
-    absl_app.run(main)
+    main()
